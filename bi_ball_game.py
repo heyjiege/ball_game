@@ -22,6 +22,18 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
+
+        # 速度控制
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                speed[0] = speed[0] if speed[0] == 0 else (abs(speed[0]) - 1) * int(speed[0] / abs(speed[0]))
+            if event.key == pygame.K_RIGHT:
+                speed[0] = speed[0] if speed[0] == 0 else (abs(speed[0]) + 1) * int(speed[0] / abs(speed[0]))
+            if event.key == pygame.K_DOWN:
+                speed[1] = speed[1] if speed[1] == 0 else (abs(speed[1]) - 1) * int(speed[1] / abs(speed[1]))
+            if event.key == pygame.K_UP:
+                speed[1] = speed[1] if speed[1] == 0 else (abs(speed[1]) + 1) * int(speed[1] / abs(speed[1]))
+
     ball_rec = ball_rec.move(speed[0], speed[1])
     if ball_rec.left < 0 or ball_rec.right > screen_width:
         speed[0] = -speed[0]
