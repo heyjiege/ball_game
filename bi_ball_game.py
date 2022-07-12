@@ -12,6 +12,11 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("pygame壁球")
 ball = pygame.image.load("image/ball.png")
 ball_rec = ball.get_rect()
+fps = 300
+fclock = pygame.time.Clock()
+
+
+
 
 while True:
     for event in pygame.event.get():
@@ -23,7 +28,8 @@ while True:
     if ball_rec.top < 0 or ball_rec.bottom > screen_height:
         speed[1] = -speed[1]
 
-    time.sleep(sleep_time)
+    # time.sleep(sleep_time)
     screen.fill(BLACK)
     screen.blit(ball, ball_rec)
     pygame.display.update()
+    fclock.tick(fps)
